@@ -7,11 +7,11 @@ const SearchBar = () => {
 
   const inputEl = useRef<HTMLInputElement>(null);
 
-  useEffect(()=>{
+  useEffect(() => {
     if (null !== inputEl.current) {
       inputEl.current.focus()
     }
-  },[store.letter.letter])
+  }, [store.letter.letter])
 
   const text = `Enter the 'Letter' here`
 
@@ -66,8 +66,7 @@ const SearchBar = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const letter = e.target.value
-    store.setNewArray(letter)
-    store.findWordsByLetter(letter)
+    letter ?  store.findWordsByLetter(letter) : store.setNewArray(letter)
   }
 
   return (
@@ -75,13 +74,13 @@ const SearchBar = () => {
       <Div>
         <h2>{text}</h2>
         <Input ref={inputEl} maxLength={1}
-          onChange={(e) => handleChange(e)} 
-          value={store.letter.letter}/>
+          onChange={(e) => handleChange(e)}
+          value={store.letter.letter} />
       </Div>
       <Wrapper>
-        {store.letter.firstLetter !== 1 &&
+        {store.letter.firstLetter !== 0 &&
           <Card>Words starts with your letter:  {store.letter.firstLetter}</Card>}
-        {store.letter.lastLetter !== 1 &&
+        {store.letter.lastLetter !== 0 &&
           <Card>Words ends with your letter:  {store.letter.lastLetter}</Card>}
         {store.letter.appearing !== 0 &&
           <Card>Your letter appear {store.letter.appearing} time(s)</Card>}

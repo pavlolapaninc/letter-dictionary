@@ -5,8 +5,8 @@ class AppState {
 
   letter = {
     letter: '',
-    firstLetter: 1,
-    lastLetter: 1,
+    firstLetter: 0,
+    lastLetter: 0,
     appearing: 0,
     repeating: 0,
   }
@@ -47,8 +47,8 @@ class AppState {
     this.oldLetter = this.letter
     this.letter = {
       letter: '',
-      firstLetter: 1,
-      lastLetter: 1,
+      firstLetter: 0,
+      lastLetter: 0,
       appearing: 0,
       repeating: 0,
     }
