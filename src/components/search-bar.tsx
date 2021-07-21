@@ -65,8 +65,8 @@ const SearchBar = () => {
     `
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const letter = e.target.value
-    letter ?  store.findWordsByLetter(letter) : store.setNewArray(letter)
+    const letter = e.target.value.toLowerCase()
+    letter ? store.findWordsByLetter(letter) : store.setNewArray(letter)
   }
 
   return (
@@ -76,6 +76,8 @@ const SearchBar = () => {
         <Input ref={inputEl} maxLength={1}
           onChange={(e) => handleChange(e)}
           value={store.letter.letter} />
+        {store.words.length !== 0 &&
+          <p><b>List of words:</b> {store.words.map(word => word + ' ')}</p>}
       </Div>
       <Wrapper>
         {store.letter.firstLetter !== 0 &&

@@ -26,18 +26,19 @@ class AppState {
     this.setWords()
     this.letter.letter = letter;
 
-    this.words.map(word => {
+    this.words.forEach(word => {
+      word = word.toLowerCase()
       /*eslint no-unused-expressions: [2, { allowTernary: true }]*/
-      letter == word.slice(0, 1) ? this.letter.firstLetter++ : null
-      letter == word.slice(-1) ? this.letter.lastLetter++ : null
+      letter === word.slice(0, 1) ? this.letter.firstLetter++ : null
+      letter === word.slice(-1) ? this.letter.lastLetter++ : null
 
       const arr = word.split('')
       for (let i = 0; i < arr.length; i++) {
-        if (arr[i] == arr[i + 1]) {
+        if (arr[i] === arr[i + 1]) {
           this.letter.repeating++
         }
         /*eslint no-unused-expressions: [1, { allowTernary: true }]*/
-        arr[i] == letter ? this.letter.appearing++ : null
+        arr[i] === letter ? this.letter.appearing++ : null
       }
     })
   }
