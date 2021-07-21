@@ -17,7 +17,6 @@ class AppState {
     makeAutoObservable(this)
   }
 
-
   setWords() {
     //Gives 10 random words from dictionary
     this.words = randomPictionaryWords({ min: 10, max: 10 })
@@ -52,9 +51,7 @@ class AppState {
       appearing: 0,
       repeating: 0,
     }
-
   }
-
 }
 
 export default new AppState()

@@ -10,7 +10,6 @@ const ChartBox = () => {
   const { firstLetter, lastLetter, appearing, repeating, letter } = store.letter
   const { firstLetter: firstOld, lastLetter: lastOld, appearing: oldApp, repeating: oldRep, letter: oldLetter } = store.oldLetter
 
-
   const Div = styled.div`
   width: 400px;
   height: 300px;
@@ -22,7 +21,6 @@ const ChartBox = () => {
   display: flex;
   justify-content: space-around
 `
-
   const series = React.useMemo(() => ({ type: 'bar' }), [])
 
   const axes = React.useMemo(
