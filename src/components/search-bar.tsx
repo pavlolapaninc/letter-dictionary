@@ -48,7 +48,7 @@ const SearchBar = () => {
 
   const Input = styled.input`
       padding: 5px 10px;
-      background-color: #ff9a90;
+      background-color: #fff;
       font-size: 24px;
       border-radius: 4px;
       border-color: #f7d7e1;
@@ -58,7 +58,7 @@ const SearchBar = () => {
       text-align: center;
       maxlength: 1;
       &:hover {
-        color: white;
+        color: dark;
       }
       &:focus {
          outline: 0
