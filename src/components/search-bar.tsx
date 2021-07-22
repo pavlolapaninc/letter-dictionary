@@ -81,7 +81,6 @@ const SearchBar = () => {
       setError(true)
       error = true
     }
-
     else {
       setError(false)
     }
@@ -107,13 +106,13 @@ const SearchBar = () => {
       </Div>
       <Wrapper>
         {store.letter.firstLetter !== 0 &&
-          <Card>Words starts with your letter:  {store.letter.firstLetter}</Card>}
+          <Card>Number of words which start with your letter:  {store.letter.firstLetter}</Card>}
         {store.letter.lastLetter !== 0 &&
-          <Card>Words ends with your letter:  {store.letter.lastLetter}</Card>}
+          <Card>Number of words which end with your letter:  {store.letter.lastLetter}</Card>}
         {store.letter.appearing !== 0 &&
-          <Card>Your letter appear {store.letter.appearing} time(s)</Card>}
+          <Card>Your letter appears {store.letter.appearing} time(s)</Card>}
         {store.letter.repeating !== 0 &&
-          <Card>Words has letter repeated in conjunction: {store.letter.repeating} time(s)</Card>}
+          <Card>Word has repeated letter in conjunction: {store.letter.repeating} time(s)</Card>}
       </Wrapper>
     </>
   )
