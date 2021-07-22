@@ -5,6 +5,7 @@ import store from "../store/appstate";
 
 const SearchBar = () => {
 
+  const [error, setError] = React.useState(false)
   const inputEl = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -64,9 +65,30 @@ const SearchBar = () => {
       }
     `
 
+  const ErrorMsg = styled.span`
+      font-weight: bold;
+      color: red;
+      margin: 0 auto;
+      text-transform: capitalize;
+  `
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const letter = e.target.value.toLowerCase()
-    letter ? store.findWordsByLetter(letter) : store.setNewArray(letter)
+    let error: boolean = false
+
+    const isLetter = /^[a-zA-Z]/.test(letter);
+    if (!isLetter && letter) {
+      setError(true)
+      error = true
+    }
+
+    else {
+      setError(false)
+    }
+
+    if (!error) {
+      letter ? store.findWordsByLetter(letter) : store.setNewArray()
+    }
   }
 
   return (
@@ -76,6 +98,10 @@ const SearchBar = () => {
         <Input ref={inputEl} maxLength={1}
           onChange={(e) => handleChange(e)}
           value={store.letter.letter} />
+        {
+          error &&
+          <ErrorMsg>Enter the correct Letter</ErrorMsg>
+        }
         {store.words.length !== 0 &&
           <p><b>List of words:</b> {store.words.map(word => word + ' ')}</p>}
       </Div>

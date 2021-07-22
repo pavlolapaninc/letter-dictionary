@@ -1,17 +1,27 @@
 import { makeAutoObservable } from 'mobx'
 const randomPictionaryWords = require('word-pictionary-list');
 
+export interface Letter {
+  letter: string;
+  firstLetter: number;
+  lastLetter: number;
+  appearing: number;
+  repeating: number;
+}
+
 class AppState {
 
-  letter = {
+  letter : Letter = {
     letter: '',
     firstLetter: 0,
     lastLetter: 0,
     appearing: 0,
     repeating: 0,
   }
-  oldLetter = {}
-  words = []
+
+  oldLetter : any = {}
+
+  words : string[] = []
 
   constructor() {
     makeAutoObservable(this)
@@ -22,28 +32,28 @@ class AppState {
     this.words = randomPictionaryWords({ min: 10, max: 10 })
   }
 
-  findWordsByLetter(letter) {
+  findWordsByLetter(letter: string) {
     this.setWords()
     this.letter.letter = letter;
 
-    this.words.forEach(word => {
-      word = word.toLowerCase()
-      /*eslint no-unused-expressions: [2, { allowTernary: true }]*/
-      letter === word.slice(0, 1) ? this.letter.firstLetter++ : null
-      letter === word.slice(-1) ? this.letter.lastLetter++ : null
+    this.words.forEach(res  => {
+      let word : string = res.toLowerCase()
+      
+      if(letter === word.slice(0, 1)) this.letter.firstLetter++ 
+      if(letter === word.slice(-1)) this.letter.lastLetter++ 
 
       const arr = word.split('')
       for (let i = 0; i < arr.length; i++) {
         if (arr[i] === arr[i + 1]) {
           this.letter.repeating++
         }
-        /*eslint no-unused-expressions: [1, { allowTernary: true }]*/
-        arr[i] === letter ? this.letter.appearing++ : null
+        
+        if(arr[i] === letter) this.letter.appearing++
       }
     })
   }
 
-  setNewArray(letter) {
+  setNewArray() {
     this.oldLetter = this.letter
     this.letter = {
       letter: '',
